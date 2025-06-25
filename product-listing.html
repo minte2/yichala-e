@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listing Details - Yichalal</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-light">
+
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">Yichalal</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a></li>
+                    <li class="nav-item"><a class="nav-link active fw-bold" href="marketplace.html">Marketplace</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
+                </ul>
+                <div class="d-flex"><a href="#" class="btn btn-outline-primary me-2">Log In</a><a href="#" class="btn btn-primary">Sign Up</a></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="container my-5 pt-4">
+        <div id="listing-content" class="row g-4">
+            <!-- Left Column: Gallery & Details -->
+            <div class="col-lg-8">
+                <div class="card p-3 shadow-sm">
+                    <div class="card-body">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                              <li class="breadcrumb-item"><a href="marketplace.html">Marketplace</a></li>
+                              <li class="breadcrumb-item" id="breadcrumb-category">Category</li>
+                              <li class="breadcrumb-item active" aria-current="page" id="breadcrumb-title">Listing</li>
+                            </ol>
+                        </nav>
+                        <h1 class="display-6 fw-bold mb-3" id="product-title">Loading...</h1>
+                        
+                        <!-- Seller Info Header -->
+                        <div class="d-flex align-items-center mb-4">
+                            <img src="https://via.placeholder.com/60" id="seller-image-header" class="seller-avatar-large me-3" alt="Seller">
+                            <div>
+                                <h6 class="mb-0 fw-bold"><a href="#" id="seller-name-header" class="text-dark text-decoration-none">Seller</a></h6>
+                                <span class="text-warning"><i class="bi bi-star-fill"></i> <span id="seller-rating-header">0</span></span>
+                                <span class="text-muted">· <span id="review-count-header">0</span> reviews</span>
+                            </div>
+                        </div>
+
+                        <!-- Image Gallery -->
+                        <div class="mb-4">
+                            <img src="https://via.placeholder.com/800x500" class="img-fluid rounded-3 mb-2 shadow-sm" id="main-image" alt="Main product image">
+                            <div class="d-flex" id="thumbnail-gallery">
+                                <!-- Thumbnails will be injected here -->
+                            </div>
+                        </div>
+
+                        <!-- Tabbed Interface for Details -->
+                        <ul class="nav nav-tabs nav-fill mb-3" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description-pane" type="button">Description</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews-pane" type="button">Reviews</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="seller-tab" data-bs-toggle="tab" data-bs-target="#seller-pane" type="button">About Seller</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content p-3" id="myTabContent">
+                            <!-- Description Pane -->
+                            <div class="tab-pane fade show active" id="description-pane" role="tabpanel">
+                                <h4 class="mb-3">About this Service</h4>
+                                <p id="product-long-description"></p>
+                            </div>
+                            <!-- Reviews Pane -->
+                            <div class="tab-pane fade" id="reviews-pane" role="tabpanel">
+                                 <!-- Review Summary -->
+                                 <div id="review-summary"></div>
+                                 <hr>
+                                 <div id="product-reviews-list"></div>
+                            </div>
+                            <!-- About Seller Pane -->
+                            <div class="tab-pane fade" id="seller-pane" role="tabpanel">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://via.placeholder.com/80" id="seller-image-pane" class="seller-avatar-xl me-4" alt="Seller">
+                                    <div>
+                                        <h4 id="seller-name-pane"></h4>
+                                        <p class="text-muted">Member since 2023</p>
+                                    </div>
+                                </div>
+                                <p class="mt-3">"I am passionate about delivering high-quality work and ensuring my clients are 100% satisfied. Let's create something great together!"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Action Card -->
+            <div class="col-lg-4">
+                <div class="card shadow-sm sticky-sidebar p-3">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="card-title fw-bold">Service Package</h5>
+                            <span class="badge skill-badge" id="skill-tag-badge"></span>
+                        </div>
+                        <hr>
+                        <p id="package-description" class="text-muted small">The standard package to get you started.</p>
+                        <div class="d-flex justify-content-between align-items-baseline mb-3">
+                            <h2 class="price-display mb-0" id="product-price">ETB 0</h2>
+                            <span class="text-muted">per project</span>
+                        </div>
+                        
+                        <div class="d-grid gap-2">
+                           <a href="#" class="btn btn-primary btn-lg">Request Service</a>
+                           <a href="#" class="btn btn-outline-secondary">Contact Seller</a>
+                        </div>
+                        
+                        <ul class="list-unstyled mt-4" id="product-inclusions">
+                            <!-- Inclusions will be dynamically added here as a checklist -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fallback for invalid listing ID -->
+        <div id="listing-not-found" class="text-center" style="display: none;">...</div>
+    </main>
+    
+    <footer class="bg-dark text-white pt-5 pb-4 mt-5">...</footer>
+
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="mockdata.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = parseInt(urlParams.get('id'));
+            const product = marketplaceData.find(p => p.id === productId);
+
+            if (product) {
+                document.title = `${product.title} - Yichalal`;
+
+                // Helper function to get review count
+                const getReviewCount = () => product.reviews ? product.reviews.length : 0;
+                
+                // Populate Breadcrumbs
+                document.getElementById('breadcrumb-category').textContent = product.category;
+                document.getElementById('breadcrumb-title').textContent = product.title;
+                document.getElementById('product-title').textContent = product.title;
+
+                // Populate Header Seller Info
+                document.getElementById('seller-image-header').src = product.seller_image;
+                document.getElementById('seller-name-header').textContent = product.seller;
+                document.getElementById('seller-rating-header').textContent = product.rating;
+                document.getElementById('review-count-header').textContent = getReviewCount();
+
+                // Populate Gallery
+                const mainImage = document.getElementById('main-image');
+                mainImage.src = product.gallery[0];
+                const galleryContainer = document.getElementById('thumbnail-gallery');
+                galleryContainer.innerHTML = '';
+                product.gallery.forEach((imgSrc, index) => {
+                    galleryContainer.innerHTML += `<img src="${imgSrc}" class="img-thumbnail me-1 gallery-thumb ${index === 0 ? 'active' : ''}" style="width: 80px; height: 60px; object-fit: cover; cursor: pointer;">`;
+                });
+                document.querySelectorAll('.gallery-thumb').forEach(thumb => {
+                    thumb.addEventListener('click', (e) => {
+                        mainImage.src = e.target.src;
+                        document.querySelector('.gallery-thumb.active').classList.remove('active');
+                        e.target.classList.add('active');
+                    });
+                });
+
+                // Populate Description Tab
+                document.getElementById('product-long-description').textContent = product.long_description;
+
+                // Populate Reviews Tab
+                const reviewSummaryContainer = document.getElementById('review-summary');
+                reviewSummaryContainer.innerHTML = `
+                    <div class="d-flex align-items-center mb-3">
+                        <h2 class="me-3 mb-0">${product.rating}</h2>
+                        <div>
+                            <div class="text-warning">${'★'.repeat(Math.round(product.rating))}${'☆'.repeat(5-Math.round(product.rating))}</div>
+                            <small class="text-muted">Based on ${getReviewCount()} reviews</small>
+                        </div>
+                    </div>
+                `;
+                const reviewsListContainer = document.getElementById('product-reviews-list');
+                if (getReviewCount() > 0) {
+                    reviewsListContainer.innerHTML = product.reviews.map(review => `
+                        <div class="review-item mb-3">
+                            <strong>${review.name}</strong>
+                            <div class="text-warning small">${'★'.repeat(review.rating)}${'☆'.repeat(5-review.rating)}</div>
+                            <p class="card-text mt-1 fst-italic">"${review.comment}"</p>
+                        </div>
+                    `).join('<hr class="my-3">');
+                } else {
+                    reviewsListContainer.innerHTML = `<p class="text-muted">No reviews yet.</p>`;
+                }
+
+
+                // Populate About Seller Tab
+                document.getElementById('seller-image-pane').src = product.seller_image;
+                document.getElementById('seller-name-pane').textContent = product.seller;
+
+                // Populate Right Sidebar Action Card
+                document.getElementById('skill-tag-badge').textContent = product.skillTag;
+                document.getElementById('product-price').textContent = `ETB ${product.price.toLocaleString()}`;
+                const inclusionsList = document.getElementById('product-inclusions');
+                inclusionsList.innerHTML = product.inclusions.map(item =>
+                    `<li class="mb-2"><i class="bi bi-check-circle me-2 text-success"></i>${item}</li>`
+                ).join('');
+
+            } else {
+                document.getElementById('listing-content').style.display = 'none';
+                document.getElementById('listing-not-found').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,411 @@
+/* Import a nice font from Google Fonts (Optional but recommended) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+/* --- General Theme & Variables --- */
+:root {
+    /* You can easily change the primary color of the site here */
+    --bs-primary: #00796b; /* A professional teal/green */
+    --bs-primary-rgb: 0, 121, 107;
+    --bs-font-sans-serif: 'Poppins', sans-serif;
+}
+
+/* Custom button style to match the new primary color */
+.btn-primary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: var(--bs-primary);
+    --bs-btn-border-color: var(--bs-primary);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #005a4f; /* A slightly darker shade for hover */
+    --bs-btn-hover-border-color: #005a4f;
+}
+
+/* --- Body & Navbar --- */
+body {
+    padding-top: 70px; /* Adjust for fixed navbar height */
+    font-family: var(--bs-font-sans-serif);
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    color: var(--bs-primary) !important;
+}
+
+/* --- Hero Section --- */
+.hero-section {
+    padding: 100px 0;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2070');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Parallax effect */
+}
+
+/* --- Card Styles --- */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1) !important;
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+/* --- Testimonials --- */
+.blockquote {
+    font-style: italic;
+    color: #555;
+}
+
+.blockquote-footer {
+    color: var(--bs-primary);
+    font-weight: 600;
+}
+
+.card.border-0 {
+    background-color: transparent;
+}
+
+
+/* --- Footer --- */
+footer a {
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+/* --- Courses Page Specific Styles --- */
+
+.page-header {
+    background-color: #f8f9fa; /* A very light grey */
+    border-bottom: 1px solid #dee2e6;
+}
+
+.course-card {
+    position: relative; /* Needed for positioning the badge */
+}
+
+.category-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 0.8rem;
+    padding: 0.4em 0.7em;
+    z-index: 10;
+}
+
+/* Make filter buttons more distinct */
+#filter-buttons .btn.active {
+    background-color: var(--bs-primary);
+    color: white;
+}
+/* --- Course Detail Page Styles --- */
+
+.course-header {
+    background-color: #343a40; /* A dark gray */
+}
+
+/* For the sticky enrollment card */
+.position-sticky {
+    top: 90px; /* (Navbar height + some margin) */
+}
+
+/* Accordion Customization */
+.accordion-button:not(.collapsed) {
+    color: var(--bs-primary);
+    background-color: #eef;
+}
+.accordion-button:focus {
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+}
+
+/* List styles for lessons and outcomes */
+.accordion-body .list-group-item {
+    border: none;
+    padding-left: 0;
+}
+/* --- Marketplace Page Styles --- */
+
+.seller-avatar {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+}
+/* --- Marketplace UI Enhancements --- */
+
+/* Filter Controls as Pills */
+.filter-controls .btn-filter {
+    background-color: #f1f1f1;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 20px;
+    margin: 0 5px;
+    color: #555;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.filter-controls .btn-filter:hover {
+    background-color: #e0e0e0;
+}
+
+.filter-controls .btn-filter.active {
+    background-color: var(--bs-primary);
+    color: white;
+    box-shadow: 0 4px 10px rgba(var(--bs-primary-rgb), 0.3);
+}
+
+/* Enhanced Listing Card */
+.listing-card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.listing-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Image container for zoom effect */
+.listing-card .card-img-container {
+    position: relative;
+    overflow: hidden;
+    height: 220px;
+}
+
+.listing-card .card-img-top {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.listing-card:hover .card-img-top {
+    transform: scale(1.1);
+}
+
+/* Price overlay on image */
+.card-img-overlay-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    color: white;
+}
+
+.listing-price {
+    font-size: 1.5rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+.listing-card .card-body {
+    padding: 1.25rem;
+}
+
+.listing-card .card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.seller-avatar {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border: 2px solid #fff;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+/* Subtle "View" button interaction */
+.view-details-btn {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.3s ease;
+}
+
+.listing-card:hover .view-details-btn {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* New Gradient CTA section */
+.cta-section {
+    background: linear-gradient(45deg, var(--bs-primary), #00a98f); /* A nice gradient */
+}
+/* Card Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.listing-card {
+    /* ... existing styles ... */
+    animation: fadeIn 0.5s ease-out forwards;
+    opacity: 0; /* Start hidden */
+}
+/* --- Product Listing Page Styles --- */
+
+.price-display {
+    color: var(--bs-primary);
+    font-weight: 700;
+}
+
+.seller-avatar-large {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.gallery-thumb {
+    opacity: 0.7;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.gallery-thumb:hover, .gallery-thumb.active {
+    opacity: 1;
+    border-color: var(--bs-primary) !important;
+    border-width: 2px;
+}
+/* --- ATTRACTIVE PRODUCT LISTING PAGE STYLES --- */
+body.bg-light {
+    background-color: #f8f9fa !important;
+}
+
+/* Tab Styles */
+.nav-tabs .nav-link {
+    color: #6c757d;
+    font-weight: 600;
+    border-bottom-width: 3px;
+    border-color: transparent;
+}
+
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    color: var(--bs-primary);
+    border-color: var(--bs-primary);
+    background-color: transparent;
+}
+
+/* Seller Avatars */
+.seller-avatar-large {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #eee;
+}
+
+.seller-avatar-xl {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Gallery Thumbnail Active State */
+.gallery-thumb.active {
+    border-color: var(--bs-primary) !important;
+    border-width: 3px;
+}
+
+/* Review Item Style */
+.review-item {
+    line-height: 1.6;
+}
+.review-item hr {
+    border-style: dashed;
+}
+
+/* Skill Badge on Sidebar */
+.skill-badge {
+    background-color: #e7f3f1; /* Light primary color */
+    color: var(--bs-primary);
+    font-weight: 600;
+    padding: 0.5em 0.8em;
+}
+/* --- USER DASHBOARD STYLES --- */
+body {
+    padding-top: 56px; /* Adjust for fixed navbar height */
+}
+
+.sidebar {
+    position: fixed;
+    top: 56px;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 0;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+.sidebar .nav-link {
+    font-weight: 500;
+    color: #333;
+    border-radius: 0;
+    padding: 0.75rem 1rem;
+}
+
+.sidebar .nav-link .bi {
+    font-size: 1.1rem;
+}
+
+.sidebar .nav-link.active, .sidebar .nav-link:hover {
+    color: var(--bs-primary);
+    background-color: #e7f3f1; /* Light primary color */
+}
+
+main {
+    padding-top: 1rem;
+}
+
+.stat-card {
+    border-left: 4px solid var(--bs-primary);
+    text-align: center;
+}
+.stat-card .bi {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.certificate-card {
+    border: 1px solid #ddd;
+    background: linear-gradient(135deg, #ffffff 0%, #f7f9fc 100%);
+}
+/* --- UNIFIED DASHBOARD STYLES --- */
+
+.sidebar .nav-category {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #6c757d;
+    text-transform: uppercase;
+    padding: 1.5rem 1rem 0.5rem;
+}
+
+.stat-card-teacher {
+    border-left: 4px solid #0dcaf0; /* A different color for teaching stats, like info blue */
+    text-align: center;
+}
+.stat-card-teacher .bi {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+/* --- Login/Sign Up Page Styles --- */
+.auth-body {
+    background-color: #f8f9fa; /* Light grey background */
+}

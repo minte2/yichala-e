@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Courses - Yichalal</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+
+  <style>
+    body {
+      padding-top: 70px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f6f8;
+      color: #333;
+    }
+
+    .category-badge {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      z-index: 1;
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.3rem 0.6rem;
+      border-radius: 0.3rem;
+      background: #0d6efd;
+      color: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    }
+
+    .course-card {
+      position: relative;
+      border-radius: 0.75rem;
+      box-shadow: 0 8px 20px rgb(0 0 0 / 0.05);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      background: white;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .course-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgb(0 0 0 / 0.12);
+    }
+
+    .card-img-top {
+      height: 180px;
+      object-fit: cover;
+      border-top-left-radius: 0.75rem;
+      border-top-right-radius: 0.75rem;
+    }
+
+    .card-body {
+      padding: 1.25rem 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #212529;
+    }
+
+    .card-text {
+      flex-grow: 1;
+      color: #6c757d;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .btn-primary {
+      padding: 0.375rem 1.2rem;
+      font-weight: 600;
+      border-radius: 0.5rem;
+    }
+
+    .page-header {
+      background: #ffffff;
+      border-radius: 0.5rem;
+      box-shadow: 0 8px 20px rgb(0 0 0 / 0.05);
+      margin-bottom: 2rem;
+      padding: 3rem 1rem;
+    }
+
+    #filter-buttons .btn {
+      min-width: 80px;
+      font-weight: 600;
+      border-radius: 0.5rem;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    #filter-buttons .btn.active {
+      background-color: #0d6efd;
+      color: white;
+      box-shadow: 0 4px 12px rgb(13 110 253 / 0.4);
+    }
+
+    #filter-buttons .btn:not(.active):hover {
+      background-color: #e7f1ff;
+      color: #0d6efd;
+    }
+
+    .input-group .form-control {
+      border-radius: 0.5rem 0 0 0.5rem;
+      font-size: 1rem;
+    }
+
+    .input-group .btn {
+      border-radius: 0 0.5rem 0.5rem 0;
+    }
+
+    /* Pagination */
+    .pagination .page-link {
+      border-radius: 0.5rem !important;
+      color: #0d6efd;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+
+    .pagination .page-item.active .page-link {
+      background-color: #0d6efd !important;
+      border-color: #0d6efd !important;
+      color: white !important;
+      box-shadow: 0 4px 12px rgb(13 110 253 / 0.4);
+    }
+
+    .pagination .page-link:hover {
+      background-color: #d0e2ff;
+      color: #0d6efd;
+    }
+
+        footer a {
+      color: white;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">Yichalal</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link active fw-bold" href="#">Courses</a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="marketplace.html">Marketplace</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
+        </ul>
+        <!-- NEW Navbar Buttons -->
+<div class="d-flex align-items-center">
+    <!-- Logged-OUT State -->
+    <div id="nav-logged-out" class="d-none">
+        <a href="#" id="login-test-button" class="btn btn-outline-primary me-2">Log In</a>
+        <a href="#" class="btn btn-primary">Sign Up</a>
+    </div>
+    <!-- Logged-IN State -->
+    <div id="nav-logged-in" class="d-none align-items-center">
+        <a href="#" class="btn btn-light me-3">My Dashboard</a>
+        <a href="#" id="logout-button" class="btn btn-primary">Log Out</a>
+    </div>
+</div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <header class="page-header py-5 text-center container">
+    <h1 class="fw-bold">Explore Our Skill Library</h1>
+    <p class="lead text-muted">Find the perfect course to start your journey.</p>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="container my-5">
+    <!-- SEARCH AND FILTER -->
+    <div class="row mb-4 align-items-center">
+      <div class="col-lg-6 mb-3">
+        <div class="input-group shadow-sm">
+          <input type="text" class="form-control" id="searchInput" placeholder="Search for courses..." />
+          <button class="btn btn-primary" id="searchButton" title="Search courses"><i class="bi bi-search"></i></button>
+        </div>
+      </div>
+      <div class="col-lg-6 text-lg-end">
+        <div class="btn-group shadow-sm" id="filter-buttons" role="group">
+          <button type="button" class="btn btn-outline-primary active" data-filter="all">All</button>
+          <button type="button" class="btn btn-outline-primary" data-filter="Tech">Tech</button>
+          <button type="button" class="btn btn-outline-primary" data-filter="Business">Business</button>
+          <button type="button" class="btn btn-outline-primary" data-filter="Creative">Creative</button>
+          <button type="button" class="btn btn-outline-primary" data-filter="Handcrafts">Handcrafts</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- COURSE CARDS -->
+    <div id="course-grid" class="row g-4">
+      <!-- Cards injected here -->
+    </div>
+
+    <!-- PAGINATION -->
+    <nav class="mt-5 d-flex justify-content-center" aria-label="Course Pagination">
+      <ul class="pagination" id="pagination-container">
+        <!-- Pagination buttons injected here -->
+      </ul>
+    </nav>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white pt-5 pb-4">
+    <div class="container text-center text-md-start">
+      <div class="row">
+        <div class="col-md-3 mb-3">
+          <h5 class="fw-bold text-uppercase">Yichalal</h5>
+          <p>Empowering Ethiopian youth to build their future through digital skills and income.</p>
+        </div>
+        <div class="col-md-2 mb-3">
+          <h6 class="fw-bold text-uppercase">Platform</h6>
+          <ul class="list-unstyled">
+            <li><a href="#">Courses</a></li>
+            <li><a href="#">Marketplace</a></li>
+            <li><a href="#">About</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3 mb-3">
+          <h6 class="fw-bold text-uppercase">Support</h6>
+          <ul class="list-unstyled">
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4 mb-3">
+          <h6 class="fw-bold text-uppercase">Contact</h6>
+          <p><i class="bi bi-geo-alt-fill me-2"></i> Addis Ababa, Ethiopia</p>
+          <p><i class="bi bi-envelope-fill me-2"></i> support@yichalal.com</p>
+          <p><i class="bi bi-telephone-fill me-2"></i> +251 91 234 5678</p>
+        </div>
+      </div>
+    </div>
+    <div class="text-center py-3" style="background-color: rgba(255, 255, 255, 0.05);">
+      &copy; 2025 Yichalal. All rights reserved.
+    </div>
+  </footer>
+
+
+  <!-- BOOTSTRAP + SCRIPT -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Mock Data -->
+  <script src="mockdata.js"></script>
+
+  <!-- Filtering, Pagination & Rendering Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const courseGrid = document.getElementById('course-grid');
+      const searchInput = document.getElementById('searchInput');
+      const filterButtons = document.querySelectorAll('#filter-buttons .btn');
+      const paginationContainer = document.getElementById('pagination-container');
+
+      const itemsPerPage = 6;
+      let currentPage = 1;
+      let filteredCourses = [...coursesData];
+
+      // Render course cards
+      function renderCourses(courses, page = 1) {
+        courseGrid.innerHTML = '';
+        const start = (page - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        const pageCourses = courses.slice(start, end);
+
+        if (pageCourses.length === 0) {
+          courseGrid.innerHTML = '<div class="col-12 text-center text-muted">No matching courses found.</div>';
+          return;
+        }
+
+        pageCourses.forEach(course => {
+          const card = document.createElement('div');
+          card.className = 'col-md-6 col-lg-4';
+
+          card.innerHTML = `
+            <div class="card h-100 shadow-sm course-card">
+              <span class="badge category-badge">${course.category}</span>
+              <img src="${course.image}" class="card-img-top" alt="${course.title}" />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">${course.title}</h5>
+                <p class="card-text text-muted">${course.description}</p>
+                <div class="mt-auto">
+                  <p class="small text-muted mb-2">By ${course.instructor}</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="fw-bold text-success"><i class="bi bi-star-fill text-warning"></i> ${course.rating}</span>
+                    <a href="course-detail.html?id=${course.id}" class="btn btn-sm btn-primary">View</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+
+          courseGrid.appendChild(card);
+        });
+
+        renderPagination(courses.length, page);
+      }
+
+      // Render pagination buttons
+      function renderPagination(totalItems, current) {
+        paginationContainer.innerHTML = '';
+        const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+        // Previous button
+        const prevLi = document.createElement('li');
+        prevLi.className = 'page-item ' + (current === 1 ? 'disabled' : '');
+        prevLi.innerHTML = `<a class="page-link" href="#" tabindex="-1">Previous</a>`;
+        prevLi.addEventListener('click', e => {
+          e.preventDefault();
+          if (current > 1) {
+            currentPage--;
+            renderCourses(filteredCourses, currentPage);
+          }
+        });
+        paginationContainer.appendChild(prevLi);
+
+        // Page numbers (show max 5 pages at a time)
+        const maxPagesToShow = 5;
+        let startPage = Math.max(1, current - Math.floor(maxPagesToShow / 2));
+        let endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
+
+        if (endPage - startPage < maxPagesToShow - 1) {
+          startPage = Math.max(1, endPage - maxPagesToShow + 1);
+        }
+
+        for (let i = startPage; i <= endPage; i++) {
+          const pageLi = document.createElement('li');
+          pageLi.className = 'page-item ' + (i === current ? 'active' : '');
+          pageLi.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+          pageLi.addEventListener('click', e => {
+            e.preventDefault();
+            currentPage = i;
+            renderCourses(filteredCourses, currentPage);
+          });
+          paginationContainer.appendChild(pageLi);
+        }
+
+        // Next button
+        const nextLi = document.createElement('li');
+        nextLi.className = 'page-item ' + (current === totalPages ? 'disabled' : '');
+        nextLi.innerHTML = `<a class="page-link" href="#">Next</a>`;
+        nextLi.addEventListener('click', e => {
+          e.preventDefault();
+          if (current < totalPages) {
+            currentPage++;
+            renderCourses(filteredCourses, currentPage);
+          }
+        });
+        paginationContainer.appendChild(nextLi);
+      }
+
+      // Filter & search courses
+      function filterCourses() {
+        const keyword = searchInput.value.toLowerCase();
+        const selectedCategory = document.querySelector('#filter-buttons .btn.active').dataset.filter;
+
+        filteredCourses = coursesData.filter(course => {
+          const matchCategory = selectedCategory === 'all' || course.category === selectedCategory;
+          const matchText = course.title.toLowerCase().includes(keyword) || course.description.toLowerCase().includes(keyword);
+          return matchCategory && matchText;
+        });
+
+        currentPage = 1;
+        renderCourses(filteredCourses, currentPage);
+      }
+
+      // Setup filter button events
+      filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterButtons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          filterCourses();
+        });
+      });
+
+      // Search event listeners
+      document.getElementById('searchButton').addEventListener('click', filterCourses);
+      searchInput.addEventListener('input', filterCourses);
+
+      // Initial render
+      renderCourses(coursesData, currentPage);
+    });
+  </script>
+  <script src="app.js"></script>
+</body>
+</html>
